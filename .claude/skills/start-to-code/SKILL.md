@@ -1,5 +1,5 @@
 ---
-name: session-start
+name: start-to-code
 description: >
   Resume work at the start of a coding session. Reads progress,
   picks the next available task based on dependency order,

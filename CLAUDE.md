@@ -14,4 +14,4 @@ This project uses a harness system for incremental, agent-driven development.
 - Specs (design plans, feature requests) go in `.claude/specs/`
 - Session logs are in `.claude/progress/`
 
-Skills available: `/plan-from-spec`, `/session-start`, `/smoke-test`
+Skills available: `/plan-from-spec`, `/start-to-code`, `/smoke-test`
