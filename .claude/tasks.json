@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "0.1",
+    "phase": 0,
+    "description": "Create root scaffold — .gitignore, README.md, root Makefile",
+    "file": "Makefile",
+    "depends_on": [],
+    "verify": "make -n",
+    "estimated_size": "small",
+    "passes": false
+  },
+  {
+    "id": "0.2",
+    "phase": 0,
+    "description": "Create pkg/goshared/ Go 1.24 module with all pinned deps from architecture doc",
+    "file": "pkg/goshared/go.mod",
+    "depends_on": ["0.1"],
+    "verify": "cd pkg/goshared && go build ./...",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.3",
+    "phase": 0,
+    "description": "Create app/mastermgmt/ Go 1.24 module — go.mod imports pkg/goshared, scaffold cmd/server/main.go, cmd/worker/main.go, internal/, Makefile",
+    "file": "app/mastermgmt/go.mod",
+    "depends_on": ["0.2"],
+    "verify": "cd app/mastermgmt && go build ./...",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.4",
+    "phase": 0,
+    "description": "Create app/eureka/ Go 1.24 module — go.mod imports pkg/goshared, scaffold cmd/server/main.go, cmd/worker/main.go, internal/, Makefile",
+    "file": "app/eureka/go.mod",
+    "depends_on": ["0.2"],
+    "verify": "cd app/eureka && go build ./...",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.5",
+    "phase": 0,
+    "description": "Create Alembic migration setup (Python 3.12) for app/mastermgmt/migration/ and app/eureka/migration/ — pyproject.toml, alembic.ini, alembic/",
+    "file": "app/mastermgmt/migration/alembic.ini",
+    "depends_on": ["0.3", "0.4"],
+    "verify": "cd app/mastermgmt/migration && alembic check",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.6",
+    "phase": 0,
+    "description": "Create proto dirs — app/mastermgmt/proto/ and app/eureka/proto/ with buf.yaml + buf.gen.yaml",
+    "file": "app/mastermgmt/proto/buf.yaml",
+    "depends_on": ["0.3", "0.4"],
+    "verify": "ls app/mastermgmt/proto/buf.yaml app/eureka/proto/buf.yaml",
+    "estimated_size": "small",
+    "passes": false
+  },
+  {
+    "id": "0.7",
+    "phase": 0,
+    "description": "Create deployment/ tree — mastermgmt/, eureka/, casdoor/ subdirs, each with local/config.yaml and local/secrets.yaml placeholder",
+    "file": "deployment/mastermgmt/local/config.yaml",
+    "depends_on": ["0.1"],
+    "verify": "test -f deployment/mastermgmt/local/config.yaml",
+    "estimated_size": "small",
+    "passes": false
+  },
+  {
+    "id": "0.8",
+    "phase": 0,
+    "description": "Create scripts/setup.sh — installs Buf CLI, sqlc, SOPS, age, air via Homebrew",
+    "file": "scripts/setup.sh",
+    "depends_on": ["0.1"],
+    "verify": "bash scripts/setup.sh --dry-run",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.9",
+    "phase": 0,
+    "description": "Set up SOPS — generate age key, add .sops.yaml per app, encrypt initial secrets.yaml files in deployment/",
+    "file": "deployment/mastermgmt/local/.sops.yaml",
+    "depends_on": ["0.7", "0.8"],
+    "verify": "sops -d deployment/mastermgmt/local/secrets.yaml > /dev/null",
+    "estimated_size": "medium",
+    "passes": false
+  },
+  {
+    "id": "0.10",
+    "phase": 0,
+    "description": "Create app/web/ placeholder with README.md and .gitkeep",
+    "file": "app/web/README.md",
+    "depends_on": ["0.1"],
+    "verify": "test -d app/web",
+    "estimated_size": "small",
+    "passes": false
+  }
+]
