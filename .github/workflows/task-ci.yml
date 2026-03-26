@@ -1,0 +1,13 @@
+# Placeholder — will be implemented in Phase 5
+# CI pipeline: triggered on push to task/* branches
+# Steps: build, lint, test, integration test, mark passes in tasks.json
+name: Task CI
+on:
+  push:
+    branches: ['task/**']
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "CI pipeline not yet configured"
