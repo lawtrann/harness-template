@@ -4,7 +4,7 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["id", "phase", "description", "file", "depends_on", "verify", "estimated_size", "passes"],
+    "required": ["id", "phase", "scope", "description", "file", "depends_on", "verify", "estimated_size", "passes"],
     "properties": {
       "id": {
         "type": "string",
@@ -15,6 +15,11 @@
         "type": "integer",
         "description": "Phase number (0-14+). Groups related tasks.",
         "minimum": 0
+      },
+      "scope": {
+        "type": "string",
+        "description": "Commit scope — short label (1-2 words) for the area this task touches, e.g. 'auth', 'db', 'api'.",
+        "maxLength": 30
       },
       "description": {
         "type": "string",
