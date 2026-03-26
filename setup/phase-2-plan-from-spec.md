@@ -15,9 +15,9 @@ Write the full `plan-from-spec` skill — the core skill that transforms a spec 
 
 ```
 .claude/skills/plan-from-spec/
-├── SKILL.md                    # Tier 1 (frontmatter) + Tier 2 (instructions)
-├── tasks-schema.json           # Tier 3 — loaded when generating tasks
-└── phase-template.md           # Tier 3 — loaded when generating phase files
+├── SKILL.md                    # Level 1 (frontmatter) + Level 2 (instructions)
+├── tasks-schema.json           # Level 3 — loaded when generating tasks
+└── phase-template.md           # Level 3 — loaded when generating phase files
 ```
 
 ## File Contents
@@ -170,7 +170,7 @@ Ready to plan the next batch? Or stop here for now?
 
 ### .claude/skills/plan-from-spec/tasks-schema.json
 
-This is the Tier 3 supporting file — loaded when planner needs to generate tasks.
+This is the Level 3 supporting file — loaded when planner needs to generate tasks.
 
 ```json
 {
@@ -230,7 +230,7 @@ This is the Tier 3 supporting file — loaded when planner needs to generate tas
 
 ### .claude/skills/plan-from-spec/phase-template.md
 
-This is the Tier 3 supporting file — template for generating phase context files.
+This is the Level 3 supporting file — template for generating phase context files.
 
 ```markdown
 # Phase {NN}: {Phase Title}
