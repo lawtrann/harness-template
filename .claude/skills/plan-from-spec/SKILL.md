@@ -74,7 +74,7 @@ If zero open questions: tell human "No open questions — proceeding to generate
 
 ### Step 4: Generate tasks
 
-For each phase in scope, generate task entries following the schema in `tasks-schema.json`.
+For each phase in scope, generate task entries following the schema in [tasks-schema.json](tasks-schema.json).
 
 Rules for task generation:
 - Each task must fit ONE coding session. If unsure, split smaller.
@@ -101,7 +101,7 @@ Approve? Or adjust any tasks?
 
 ### Step 5: Generate phase files
 
-For each phase in scope, generate a phase context file following the template in `phase-template.md`.
+For each phase in scope, generate a phase context file following the template in [phase-template.md](phase-template.md).
 
 Key principles for phase files:
 - Copy all relevant code snippets from spec — agent should NOT need to open the spec
