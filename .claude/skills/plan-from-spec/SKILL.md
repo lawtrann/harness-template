@@ -5,6 +5,8 @@ description: >
   Use when a new spec is placed in .claude/specs/ and needs to be
   broken down into tasks.json entries and .claude/phases/ context files.
   Planning only — never writes code.
+disable-model-invocation: true
+argument-hint: <spec-file-path>
 ---
 
 # Plan from spec
