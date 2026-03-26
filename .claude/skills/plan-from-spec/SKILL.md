@@ -83,6 +83,8 @@ Rules for task generation:
 - `verify` must be a concrete command the agent can run (go build, go test, make, etc.)
 - `file` is the PRIMARY file — the one created or most significantly changed
 - `passes` is always `false` — only CI changes this
+- `scope` is a short label (1-2 words) for the area the task touches — used as the commit scope in conventional commit messages (e.g. `auth`, `db`, `api`)
+- For each `verify` command, check: does the required tool/binary exist yet? If it depends on a tool installed by another task (e.g. `alembic check` needs Python env from a prior task), ensure that task is in `depends_on`. If no prior task sets up the tool, either make the current task include setup, or create a prerequisite task.
 
 Present the generated tasks to human as a table:
 ```

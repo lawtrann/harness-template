@@ -9,6 +9,7 @@
 - Always create branch `task/{id}_{slug}` before coding. Never commit directly to develop.
 - Always write a descriptive commit message referencing the task ID.
 - Never merge to develop. Only push and open PR.
+- Each commit must address one concern. Do not bundle unrelated changes in a single commit.
 
 ## Session discipline
 - Always update `.claude/progress/latest.md` before ending a session.
