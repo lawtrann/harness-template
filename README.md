@@ -25,5 +25,7 @@ A GitHub template repo for agent-driven incremental development with Claude Code
 ## Workflow
 
 **Plan** → drop spec → `/plan-from-spec` → tasks.json + phases/
+
 **Code** → `/start-to-code` → implement 1 task → push PR
+
 **Verify** → CI tests → CI marks task passed → human reviews → merge
