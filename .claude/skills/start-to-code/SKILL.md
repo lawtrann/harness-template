@@ -116,6 +116,8 @@ If smoke test reports failures:
 
 If all pass or no checks apply yet (early phases): proceed to Step 6.
 
+If `/smoke-test` does not produce a clear pass/fail verdict (e.g. skill errors out or returns ambiguous output), treat as PASS with caution — log a warning in progress and proceed, but be extra careful during implementation.
+
 ### Step 6: Implement
 
 Now implement the task. Use the phase file as your primary reference for:
