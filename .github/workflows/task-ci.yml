@@ -102,6 +102,13 @@ jobs:
             echo "::endgroup::"
           done
 
+      - name: Lint all modules
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: ${{ fromJson(needs.detect.outputs.go_modules)[0] }}
+          args: --timeout=5m
+
   node:
     name: Node checks
     needs: detect
