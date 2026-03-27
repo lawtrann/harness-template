@@ -92,6 +92,21 @@ jobs:
             fi
           done
 
+      - name: Integration tests (testcontainers)
+        run: |
+          modules='${{ needs.detect.outputs.go_modules }}'
+          echo "$modules" | jq -r '.[]' | while read -r dir; do
+            # Only run if integration test files exist
+            if grep -rl '//go:build integration' "$GITHUB_WORKSPACE/$dir" 2>/dev/null | grep -q .; then
+              echo "::group::Integration test $dir"
+              cd "$GITHUB_WORKSPACE/$dir"
+              go test -tags=integration ./... -count=1 -timeout=600s
+              echo "::endgroup::"
+            else
+              echo "No integration tests in $dir — skipping"
+            fi
+          done
+
       - name: Vet all modules
         run: |
           modules='${{ needs.detect.outputs.go_modules }}'
@@ -101,6 +116,13 @@ jobs:
             go vet ./...
             echo "::endgroup::"
           done
+
+      - name: Lint all modules
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: ${{ fromJson(needs.detect.outputs.go_modules)[0] }}
+          args: --timeout=5m
 
   node:
     name: Node checks

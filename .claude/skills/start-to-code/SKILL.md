@@ -82,6 +82,10 @@ Status: IN_PROGRESS
 
 ## Plan
 {brief plan for implementing this task}
+
+## Infra state
+{List Docker services running, DB schemas created, external services configured.
+If early phase with no infra yet, write "No infrastructure yet."}
 ```
 
 **Check for clean working tree:**
@@ -111,6 +115,8 @@ If smoke test reports failures:
 - If unfixable: update progress to BLOCKED, explain the failure, stop.
 
 If all pass or no checks apply yet (early phases): proceed to Step 6.
+
+If `/smoke-test` does not produce a clear pass/fail verdict (e.g. skill errors out or returns ambiguous output), treat as PASS with caution — log a warning in progress and proceed, but be extra careful during implementation.
 
 ### Step 6: Implement
 
@@ -156,6 +162,9 @@ Status: COMPLETED
 
 ## PR
 - {PR URL}
+
+## Infra state
+{Current state: which Docker services running, DB migrations applied, external services configured}
 
 ## Next
 Task {next_id} is next in dependency order (informational only).

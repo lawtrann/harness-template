@@ -111,6 +111,7 @@ Rules for task generation:
 - `depends_on` must reference only task IDs that exist (already planned or in current batch)
 - `verify` must be a concrete command the agent can run (go build, go test, make, etc.)
 - `file` is the PRIMARY file — the one created or most significantly changed
+- `scope` is a short label (1-2 words) for the area the task touches — used as the commit scope in conventional commit messages (e.g. `auth`, `db`, `api`)
 - `passes` is always `false` — only CI changes this
 
 Present the generated tasks to human as a table:
@@ -179,7 +180,7 @@ This is the Level 3 supporting file — loaded when planner needs to generate ta
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["id", "phase", "description", "file", "depends_on", "verify", "estimated_size", "passes"],
+    "required": ["id", "phase", "scope", "description", "file", "depends_on", "verify", "estimated_size", "passes"],
     "properties": {
       "id": {
         "type": "string",
@@ -190,6 +191,11 @@ This is the Level 3 supporting file — loaded when planner needs to generate ta
         "type": "integer",
         "description": "Phase number (0-14+). Groups related tasks.",
         "minimum": 0
+      },
+      "scope": {
+        "type": "string",
+        "description": "Commit scope — short label (1-2 words) for the area this task touches, e.g. 'auth', 'db', 'api'.",
+        "maxLength": 30
       },
       "description": {
         "type": "string",
